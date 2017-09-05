@@ -1,0 +1,44 @@
+{
+  "name": "npm-dependency-notifer",
+  "version": "1.0.0",
+  "description": "Npm dependency check and email notification",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index",
+    "test": "jest",
+    "test-watch": "jest --watchAll --maxWorkers=16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victorparmar/npm-dependency-notifer.git"
+  },
+  "keywords": [
+    "npm",
+    "dependency",
+    "check",
+    "notify"
+  ],
+  "author": "Victor Parmar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorparmar/npm-dependency-notifer/issues"
+  },
+  "homepage": "https://github.com/victorparmar/npm-dependency-notifer#readme",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "jest": "20.0.4"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "dependencies": {
+    "bluebird": "3.5.0",
+    "dotenv": "4.0.0",
+    "nodemailer": "4.1.0",
+    "npm-check": "5.4.5",
+    "validator": "8.1.0"
+  }
+}
