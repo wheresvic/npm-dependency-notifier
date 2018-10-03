@@ -6,14 +6,14 @@ A simple application that checks for outdated dependencies and sends out an emai
 
 ```bash
 npm install
-cp .env.dist .env # fill in secret values
-node src/index <package.json root> <to email address> <email subject>
+cp .env.dist .env # fill in secret values, note that if both mailgun and gmail credentials are provided, then gmail takes precedence
+node src/index <package.json root> <from email address> <to email address> <email subject>
 ```
 
 Example:
 
 ```bash
-node src/index ~/npq/ewolo/easy-workout-log victorparmar@gmail.com "easy-workout-log dependency update"
+node src/index . noreply@smalldata.tech vic@smalldata.tech "npm-dependency-notifier dependency update"
 ```
 
 ## Testing

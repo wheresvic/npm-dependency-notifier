@@ -1,27 +1,41 @@
-'use strict';
-
-const nodemailer = require('nodemailer');
-const validator = require('validator');
+const nodemailer = require("nodemailer");
+const mailgunTransport = require("nodemailer-mailgun-transport");
+const validator = require("validator");
 
 class EmailService {
   /**
-   * @param username  needs to be a fully qualified email address snoop@gmail.com for e.g.
-   * @param password  required
+   * @param gmailUsername  needs to be a fully qualified email address snoop@gmail.com for e.g.
    */
-  constructor(username, password) {
-    let transportUri = 'smtps://' + encodeURIComponent(username) + ':' + encodeURIComponent(password) + '@smtp.gmail.com';
-    this.transporter = nodemailer.createTransport(transportUri);
+  constructor({ mailgunApiKey, mailgunDomain, gmailUsername, gmailPassword }) {
+    if (mailgunApiKey) {
+      const auth = {
+        auth: {
+          api_key: mailgunApiKey,
+          domain: mailgunDomain
+        },
+        host: "api.eu.mailgun.net"
+        // proxy: 'http://user:pass@localhost:8080' // optional proxy, default is false
+      };
+
+      this.transporter = nodemailer.createTransport(mailgunTransport(auth));
+    }
+
+    if (gmailUsername && gmailPassword) {
+      const transportUri =
+        "smtps://" + encodeURIComponent(gmailUsername) + ":" + encodeURIComponent(gmailPassword) + "@smtp.gmail.com";
+      this.transporter = nodemailer.createTransport(transportUri);
+    }
   }
 
-  sendEmail(toAddress, subject, text, htmlText, callback) {
-
-    let isEmail = validator.isEmail(toAddress);
+  sendEmail({ fromAddress, toAddress, subject, text, htmlText }, callback) {
+    const isEmail = validator.isEmail(toAddress);
     if (!isEmail) {
-      callback(new Error('Provided email ' + toAddress + ' is not valid!'), null);
+      callback(new Error("Provided email " + toAddress + " is not valid!"), null);
       return;
     }
 
-    let mailOptions = {
+    const mailOptions = {
+      from: fromAddress ? fromAddress : "noreply@smalldata.tech",
       to: toAddress,
       subject: subject,
       text: text,
@@ -38,7 +52,6 @@ class EmailService {
       // smtpTransport.close(); // shut down the connection pool, no more messages
     });
   }
-
-};
+}
 
 module.exports = EmailService;

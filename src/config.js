@@ -1,19 +1,21 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const config = {
-  EMAIL_USERNAME: process.env.EMAIL_USERNAME,
-  EMAIL_PASSWORD: process.env.EMAIL_PASSWORD
+  GMAIL_USERNAME: process.env.GMAIL_USERNAME,
+  GMAIL_PASSWORD: process.env.GMAIL_PASSWORD,
+  MAILGUN_API_KEY: process.env.MAILGUN_API_KEY,
+  MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN
 };
 
 module.exports = {
   init: () => {
+    const isEmailConfigPresent =
+      (config.GMAIL_USERNAME && config.GMAIL_PASSWORD) || (config.MAILGUN_API_KEY && config.MAILGUN_DOMAIN);
 
-    const allKeysPresent = Object.values(config).filter(e => Boolean(e)).length === Object.keys(config).length;
-
-    if (!allKeysPresent) {
-      return Promise.reject('Config not initialized!');
+    if (isEmailConfigPresent) {
+      return Promise.resolve(config);
     }
 
-    return Promise.resolve(config);
+    return Promise.reject("Config not initialized!");
   }
 };

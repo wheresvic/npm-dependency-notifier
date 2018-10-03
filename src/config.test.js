@@ -8,8 +8,8 @@ describe('config', () => {
     const ic = await config.init();
 
     // then
-    expect(ic.EMAIL_USERNAME.length).to.be.above(0);
-    expect(ic.EMAIL_PASSWORD.length).to.be.above(0);
+    expect(ic.GMAIL_USERNAME.length).to.be.above(0);
+    expect(ic.GMAIL_PASSWORD.length).to.be.above(0);
 
   });
 });
