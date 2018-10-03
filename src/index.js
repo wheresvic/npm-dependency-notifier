@@ -15,10 +15,9 @@ const main = async () => {
   const packageDifferences = currentState.get("packages");
   const differences = getDifferences(packageDifferences);
 
+  // only send email if there are some differences
   if (differences.length) {
-    const content = differences.join("\n");
-
-    console.log("Yikes! Some dependencies are out of date!");
+    const content = "Yikes! Some dependencies are out of date!\n\n" + differences.join("\n");
     console.log(content);
 
     const info = await emailIt({
