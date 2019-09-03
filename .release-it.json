@@ -1,10 +1,11 @@
+
 {
-  "verbose": true,
-  "pkgFiles": ["package.json", "package-lock.json"],
-  "requireCleanWorkingDir": true,
-  "src": {
-    "beforeStartCommand": "npm test",
-    "afterReleaseCommand": "git describe --abbrev=0 --tags"
+  "hooks": {
+    "before:init": "npm run test",
+    "before:bump": null,
+    "after:bump": null,
+    "before:release": null,
+    "after:release": "git describe --abbrev=0 --tags"
   },
   "npm": {
     "publish": false
@@ -12,13 +13,8 @@
   "github": {
     "release": true
   },
-  "prompt": {
-    "src": {
-      "status": true,
-      "tag": true,
-      "release": true,
-      "publish": true
-    }
+  "gitlab": {
+    "release": false
   }
 }
 
