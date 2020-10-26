@@ -6,6 +6,11 @@ const EmailService = require("./EmailService");
 
 const main = async () => {
   console.log(process.argv);
+  console.log(`Usage: node src/index <path> vic@smalldata.tech <toAddress> <subject>`);
+
+  if (process.argv.length < 5) {
+    return;
+  }
 
   const ic = await config.init();
 
