@@ -31,7 +31,7 @@
   "dependencies": {
     "bluebird": "3.7.2",
     "dotenv": "8.2.0",
-    "nodemailer": "4.6.8",
+    "nodemailer": "6.4.16",
     "nodemailer-mailgun-transport": "1.4.0",
     "npm-check": "5.9.2",
     "validator": "13.1.17"
