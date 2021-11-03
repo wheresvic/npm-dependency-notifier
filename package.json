@@ -34,6 +34,6 @@
     "nodemailer": "4.6.8",
     "nodemailer-mailgun-transport": "1.4.0",
     "npm-check": "5.9.2",
-    "validator": "13.1.17"
+    "validator": "13.7.0"
   }
 }
