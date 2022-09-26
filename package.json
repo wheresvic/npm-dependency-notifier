@@ -32,7 +32,7 @@
     "bluebird": "3.7.2",
     "dotenv": "8.2.0",
     "nodemailer": "4.6.8",
-    "nodemailer-mailgun-transport": "1.4.0",
+    "nodemailer-mailgun-transport": "2.1.5",
     "npm-check": "5.9.2",
     "validator": "13.1.17"
   }
