@@ -5,7 +5,7 @@ const EmailService = require("./EmailService");
 
 const main = async () => {
   console.log(process.argv);
-  console.log(`Usage: node src/index <path> vic@smalldata.tech <toAddress> <subject>`);
+  console.log(`Usage: node src/index <path> <fromEmail> <toEmail> <subject>`);
 
   if (process.argv.length < 5) {
     return;
