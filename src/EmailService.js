@@ -1,6 +1,5 @@
 const nodemailer = require("nodemailer");
 const mailgunTransport = require("nodemailer-mailgun-transport");
-const validator = require("validator");
 
 class EmailService {
   /**
@@ -28,12 +27,6 @@ class EmailService {
   }
 
   sendEmail({ fromAddress, toAddress, subject, text, htmlText }, callback) {
-    const isEmail = validator.isEmail(toAddress);
-    if (!isEmail) {
-      callback(new Error("Provided email " + toAddress + " is not valid!"), null);
-      return;
-    }
-
     const mailOptions = {
       from: fromAddress ? fromAddress : "noreply@smalldata.tech",
       to: toAddress,

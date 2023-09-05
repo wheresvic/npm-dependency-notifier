@@ -1,6 +1,5 @@
-const Promise = require("bluebird");
 const npmCheck = require("npm-check");
-
+const util = require("util");
 const config = require("./config");
 const EmailService = require("./EmailService");
 
@@ -58,10 +57,9 @@ const emailIt = async ({ ic, fromAddress, toAddress, subject, text }) => {
     gmailUsername: ic.GMAIL_USERNAME,
     gmailPassword: ic.GMAIL_PASSWORD
   });
-  const sendEmailAsync = Promise.promisify(emailService.sendEmail, { context: emailService });
 
-  const info = await sendEmailAsync({ fromAddress, toAddress, subject, text, htmlText: null });
-
+  emailService.sendEmailAsync = util.promisify(emailService.sendEmail);
+  const info = await emailService.sendEmailAsync({ fromAddress, toAddress, subject, text, htmlText: null });
   return info;
 };
 
